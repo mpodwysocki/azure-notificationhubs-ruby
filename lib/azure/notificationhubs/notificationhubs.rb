@@ -94,7 +94,7 @@ module Azure
         response = https.request(request)
 
         # TODO: Add retry logic
-        raise HttpError.new(response.code, response.message) unless response.code == "201"
+        raise HttpError.new(response.code, response.msg) unless response.code == "201"
 
         tracking_id = response["TrackingId"]
         location = response["Location"]
