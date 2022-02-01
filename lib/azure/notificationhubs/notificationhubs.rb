@@ -3,6 +3,8 @@
 # Copyright (c) Matthew Podwysocki. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
 
+require_relative "errors"
+require_relative "notification"
 require_relative "token_provider"
 require_relative "version"
 require "uri"
@@ -11,48 +13,6 @@ require "net/http"
 module Azure
   module NotificationHubs
     API_VERSION = "2020-06"
-
-    # This class represents a notification to be sent to Notification Hubs
-    class Notification
-      attr_accessor :body, :headers, :content_type, :platform
-
-      def initialize(body, headers, content_type, platform)
-        @body = body
-        @headers = headers
-        @content_type = content_type
-        @platform = platform
-      end
-    end
-
-    # This class represents a notification response
-    class NotificationResponse
-      attr_reader :location, :tracking_id, :correlation_id
-
-      def initialize(location, tracking_id, correlation_id)
-        @location = location
-        @tracking_id = tracking_id
-        @correlation_id = correlation_id
-      end
-    end
-
-    # This class is a custom error for Azure Notification Hubs
-    class Error < StandardError
-    end
-
-    # This class represents an HTTP error
-    class HttpError < Error
-      attr_reader :code, :message
-
-      def initialize(code, message)
-        super(message)
-        @code = code
-        @message = message
-      end
-
-      def to_s
-        "HTTP request failed => #{@code} #{@message}"
-      end
-    end
 
     # This class represents actions that cna be done on the Azure Notification Hub
     class NotifcationHub
@@ -65,6 +25,14 @@ module Azure
 
       def send_direct_notification(notification, device_handle)
         send_notification(notification, device_handle, nil)
+      end
+
+      def send_tags_notification(notification, tags)
+        send_notification(notification, nil, tags.join("||"))
+      end
+
+      def send_tag_expression_notification(notification, tag_expression)
+        send_notification(notification, nil, tag_expression)
       end
 
       private

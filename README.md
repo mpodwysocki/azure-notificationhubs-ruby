@@ -1,26 +1,28 @@
 [![Ruby](https://github.com/mpodwysocki/azure-notificationhubs-ruby/actions/workflows/main.yml/badge.svg)](https://github.com/mpodwysocki/azure-notificationhubs-ruby/actions/workflows/main.yml)
 
-# Azure::Notificationhubs::Ruby
+# Azure Notification Hubs SDK for Ruby (unofficial)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/azure/notificationhubs/ruby`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is the unofficial Azure Notification Hubs SDK for Ruby, bringing the power of Azure Notification Hubs to the Ruby language.  This is an ongoing effort to
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'azure-notificationhubs-ruby'
+gem 'azure-notificationhubs'
 ```
 
 And then execute:
 
-    $ bundle install
+```bash
+bundle install
+```
 
 Or install it yourself as:
 
-    $ gem install azure-notificationhubs-ruby
+```bash
+gem install azure-notificationhubs
+```
 
 ## Usage
 

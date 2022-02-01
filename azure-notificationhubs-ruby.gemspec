@@ -3,7 +3,7 @@
 require_relative "lib/azure/notificationhubs/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "azure-notificationhubs-ruby"
+  spec.name = "azure-notificationhubs"
   spec.version = Azure::NotificationHubs::VERSION
   spec.authors = ["Matthew Podwysocki"]
   spec.email = ["matthewp@microsoft.com"]
