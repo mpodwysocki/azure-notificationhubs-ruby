@@ -5,7 +5,6 @@
 
 module Azure
   module NotificationHubs
-
     # Serializer helper class
     class Serializer
       class << self

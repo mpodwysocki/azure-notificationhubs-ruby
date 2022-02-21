@@ -38,9 +38,9 @@ module Azure
 
       def delete_installation(installation_id)
         fixed_host = @base_uri.gsub("sb://", "https://")
-        target_uri = "#{fixed_host}#{@hub_name}/installations/#{installation_id}?api-version=#{API_VERSION}"
+        uri = "#{fixed_host}#{@hub_name}/installations/#{installation_id}?api-version=#{API_VERSION}"
 
-        endpoint_uri = URI(target_uri)
+        endpoint_uri = URI(uri)
         https = Net::HTTP.new(endpoint_uri.host, endpoint_uri.port)
         https.use_ssl = true
         request = Net::HTTP::Delete.new(endpoint_uri.path, "Content-Type" => "application/json")
@@ -61,9 +61,9 @@ module Azure
 
       def get_installation(installation_id)
         fixed_host = @base_uri.gsub("sb://", "https://")
-        target_uri = "#{fixed_host}#{@hub_name}/installations/#{installation_id}?api-version=#{API_VERSION}"
+        uri = "#{fixed_host}#{@hub_name}/installations/#{installation_id}?api-version=#{API_VERSION}"
 
-        endpoint_uri = URI(target_uri)
+        endpoint_uri = URI(uri)
         https = Net::HTTP.new(endpoint_uri.host, endpoint_uri.port)
         https.use_ssl = true
         request = Net::HTTP::Get.new(endpoint_uri.path, "Content-Type" => "application/json")
@@ -82,9 +82,9 @@ module Azure
 
       def patch_installation(installation_id, patches)
         fixed_host = @base_uri.gsub("sb://", "https://")
-        target_uri = "#{fixed_host}#{@hub_name}/installations/#{installation_id}?api-version=#{API_VERSION}"
+        uri = "#{fixed_host}#{@hub_name}/installations/#{installation_id}?api-version=#{API_VERSION}"
 
-        endpoint_uri = URI(target_uri)
+        endpoint_uri = URI(uri)
         https = Net::HTTP.new(endpoint_uri.host, endpoint_uri.port)
         https.use_ssl = true
         request = Net::HTTP::Patch.new(endpoint_uri.path, "Content-Type" => "application/json")
@@ -107,9 +107,9 @@ module Azure
 
       def upsert_installation(installation)
         fixed_host = @base_uri.gsub("sb://", "https://")
-        target_uri = "#{fixed_host}#{@hub_name}/installations/#{installation.installation_id}?api-version=#{API_VERSION}"
+        uri = "#{fixed_host}#{@hub_name}/installations/#{installation.installation_id}?api-version=#{API_VERSION}"
 
-        endpoint_uri = URI(target_uri)
+        endpoint_uri = URI(uri)
         https = Net::HTTP.new(endpoint_uri.host, endpoint_uri.port)
         https.use_ssl = true
         request = Net::HTTP::Patch.new(endpoint_uri.path, "Content-Type" => "application/json")
@@ -135,10 +135,10 @@ module Azure
 
       def send_notification(notification, device_handle, tag_expression)
         fixed_host = @base_uri.gsub("sb://", "https://")
-        target_uri = "#{fixed_host}#{@hub_name}/messages/?api-version=#{API_VERSION}"
-        target_uri += "&direct=true" unless device_handle.nil?
+        uri = "#{fixed_host}#{@hub_name}/messages/?api-version=#{API_VERSION}"
+        uri += "&direct=true" unless device_handle.nil?
 
-        endpoint_uri = URI(target_uri)
+        endpoint_uri = URI(uri)
         https = Net::HTTP.new(endpoint_uri.host, endpoint_uri.port)
         https.use_ssl = true
         request = Net::HTTP::Post.new(endpoint_uri.path, "Content-Type" => notification.content_type)
